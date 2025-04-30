@@ -1746,3 +1746,46 @@ func TestNewRunnerJobPLZTestRun(t *testing.T) {
 		t.Errorf("NewRunnerJob returned unexpected data, diff: %s", diff)
 	}
 }
+
+func TestGetInitContainers_SetsSecurityContext(t *testing.T) {
+	expectedSecurityContext := &corev1.SecurityContext{
+		RunAsUser:  ptrInt64(1300),
+		RunAsGroup: ptrInt64(1300),
+	}
+
+	testInitContainer := v1alpha1.InitContainer{
+		Name:    "cert-init",
+		Image:   "busybox",
+		Command: []string{"sh", "-c", "echo hello"},
+		// Don't set SecurityContext here — k6-operator only uses pod.ContainerSecurityContext
+	}
+
+	pod := &v1alpha1.Pod{
+		InitContainers:           []v1alpha1.InitContainer{testInitContainer},
+		ContainerSecurityContext: *expectedSecurityContext,
+	}
+
+	script := &types.Script{
+		Name:     "test",
+		Filename: "script.js",
+		Type:     "ConfigMap",
+	}
+
+	containers := getInitContainers(pod, script)
+
+	if len(containers) != 1 {
+		t.Fatalf("expected 1 init container, got %d", len(containers))
+	}
+
+	got := containers[0].SecurityContext
+	if got == nil {
+		t.Fatal("expected SecurityContext to be set, but got nil")
+	}
+	if !reflect.DeepEqual(got, expectedSecurityContext) {
+		t.Errorf("expected SecurityContext: %+v, got: %+v", expectedSecurityContext, got)
+	}
+}
+
+func ptrInt64(i int64) *int64 {
+	return &i
+}

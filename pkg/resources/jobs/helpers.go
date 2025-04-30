@@ -129,6 +129,18 @@ func getInitContainers(pod *v1alpha1.Pod, script *types.Script) []corev1.Contain
 
 		volumeMounts := append(script.VolumeMount(), k6InitContainer.VolumeMounts...)
 
+		// initContainer := corev1.Container{
+		// 	Name:            name,
+		// 	Image:           k6InitContainer.Image,
+		// 	Command:         k6InitContainer.Command,
+		// 	Args:            k6InitContainer.Args,
+		// 	WorkingDir:      k6InitContainer.WorkingDir,
+		// 	EnvFrom:         k6InitContainer.EnvFrom,
+		// 	Env:             k6InitContainer.Env,
+		// 	VolumeMounts:    volumeMounts,
+		// 	ImagePullPolicy: pod.ImagePullPolicy,
+		// 	SecurityContext: &pod.ContainerSecurityContext,
+		// }
 		initContainer := corev1.Container{
 			Name:            name,
 			Image:           k6InitContainer.Image,
@@ -139,7 +151,11 @@ func getInitContainers(pod *v1alpha1.Pod, script *types.Script) []corev1.Contain
 			Env:             k6InitContainer.Env,
 			VolumeMounts:    volumeMounts,
 			ImagePullPolicy: pod.ImagePullPolicy,
-			SecurityContext: &pod.ContainerSecurityContext,
+		}
+		if k6InitContainer.SecurityContext != nil {
+			initContainer.SecurityContext = k6InitContainer.SecurityContext
+		} else {
+			initContainer.SecurityContext = &pod.ContainerSecurityContext
 		}
 		initContainers = append(initContainers, initContainer)
 	}
