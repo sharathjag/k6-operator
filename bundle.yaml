@@ -929,6 +929,78 @@ spec:
                           type: string
                         name:
                           type: string
+                        securityContext:
+                          properties:
+                            allowPrivilegeEscalation:
+                              type: boolean
+                            appArmorProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            capabilities:
+                              properties:
+                                add:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                                drop:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                              type: object
+                            privileged:
+                              type: boolean
+                            procMount:
+                              type: string
+                            readOnlyRootFilesystem:
+                              type: boolean
+                            runAsGroup:
+                              format: int64
+                              type: integer
+                            runAsNonRoot:
+                              type: boolean
+                            runAsUser:
+                              format: int64
+                              type: integer
+                            seLinuxOptions:
+                              properties:
+                                level:
+                                  type: string
+                                role:
+                                  type: string
+                                type:
+                                  type: string
+                                user:
+                                  type: string
+                              type: object
+                            seccompProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            windowsOptions:
+                              properties:
+                                gmsaCredentialSpec:
+                                  type: string
+                                gmsaCredentialSpecName:
+                                  type: string
+                                hostProcess:
+                                  type: boolean
+                                runAsUserName:
+                                  type: string
+                              type: object
+                          type: object
                         volumeMounts:
                           items:
                             properties:
@@ -953,6 +1025,9 @@ spec:
                           type: array
                         workingDir:
                           type: string
+                      required:
+                      - image
+                      - name
                       type: object
                     type: array
                   livenessProbe:
@@ -1165,6 +1240,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:
@@ -2872,6 +2949,78 @@ spec:
                           type: string
                         name:
                           type: string
+                        securityContext:
+                          properties:
+                            allowPrivilegeEscalation:
+                              type: boolean
+                            appArmorProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            capabilities:
+                              properties:
+                                add:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                                drop:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                              type: object
+                            privileged:
+                              type: boolean
+                            procMount:
+                              type: string
+                            readOnlyRootFilesystem:
+                              type: boolean
+                            runAsGroup:
+                              format: int64
+                              type: integer
+                            runAsNonRoot:
+                              type: boolean
+                            runAsUser:
+                              format: int64
+                              type: integer
+                            seLinuxOptions:
+                              properties:
+                                level:
+                                  type: string
+                                role:
+                                  type: string
+                                type:
+                                  type: string
+                                user:
+                                  type: string
+                              type: object
+                            seccompProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            windowsOptions:
+                              properties:
+                                gmsaCredentialSpec:
+                                  type: string
+                                gmsaCredentialSpecName:
+                                  type: string
+                                hostProcess:
+                                  type: boolean
+                                runAsUserName:
+                                  type: string
+                              type: object
+                          type: object
                         volumeMounts:
                           items:
                             properties:
@@ -2896,6 +3045,9 @@ spec:
                           type: array
                         workingDir:
                           type: string
+                      required:
+                      - image
+                      - name
                       type: object
                     type: array
                   livenessProbe:
@@ -3108,6 +3260,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:
@@ -4838,6 +4992,78 @@ spec:
                           type: string
                         name:
                           type: string
+                        securityContext:
+                          properties:
+                            allowPrivilegeEscalation:
+                              type: boolean
+                            appArmorProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            capabilities:
+                              properties:
+                                add:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                                drop:
+                                  items:
+                                    type: string
+                                  type: array
+                                  x-kubernetes-list-type: atomic
+                              type: object
+                            privileged:
+                              type: boolean
+                            procMount:
+                              type: string
+                            readOnlyRootFilesystem:
+                              type: boolean
+                            runAsGroup:
+                              format: int64
+                              type: integer
+                            runAsNonRoot:
+                              type: boolean
+                            runAsUser:
+                              format: int64
+                              type: integer
+                            seLinuxOptions:
+                              properties:
+                                level:
+                                  type: string
+                                role:
+                                  type: string
+                                type:
+                                  type: string
+                                user:
+                                  type: string
+                              type: object
+                            seccompProfile:
+                              properties:
+                                localhostProfile:
+                                  type: string
+                                type:
+                                  type: string
+                              required:
+                              - type
+                              type: object
+                            windowsOptions:
+                              properties:
+                                gmsaCredentialSpec:
+                                  type: string
+                                gmsaCredentialSpecName:
+                                  type: string
+                                hostProcess:
+                                  type: boolean
+                                runAsUserName:
+                                  type: string
+                              type: object
+                          type: object
                         volumeMounts:
                           items:
                             properties:
@@ -4862,6 +5088,9 @@ spec:
                           type: array
                         workingDir:
                           type: string
+                      required:
+                      - image
+                      - name
                       type: object
                     type: array
                   livenessProbe:
@@ -5074,6 +5303,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:
@@ -6298,6 +6529,38 @@ subjects:
   namespace: k6-operator-system
 ---
 apiVersion: v1
+data:
+  test.js: |
+    import http from 'k6/http';
+    import { Rate } from 'k6/metrics';
+    import { check, sleep } from 'k6';
+
+    const failRate = new Rate('failed_requests');
+
+    export let options = {
+      stages: [
+        { target: 200, duration: '30s' },
+        { target: 0, duration: '30s' },
+      ],
+      thresholds: {
+        failed_requests: ['rate<=0'],
+        http_req_duration: ['p(95)<500'],
+      },
+    };
+
+    export default function () {
+      const result = http.get('https://quickpizza.grafana.com');
+      check(result, {
+        'http response status code is 200': result.status === 200,
+      });
+      failRate.add(result.status !== 200);
+      sleep(1);
+    }
+kind: ConfigMap
+metadata:
+  name: k6-test
+---
+apiVersion: v1
 kind: Service
 metadata:
   labels:
@@ -6335,7 +6598,7 @@ spec:
         - --enable-leader-election
         command:
         - /manager
-        image: ghcr.io/grafana/k6-operator:controller-v0.0.20
+        image: ghcr.io/grafana/k6-operator:latest
         name: manager
         resources:
           limits:
@@ -6356,3 +6619,152 @@ spec:
           name: https
       serviceAccountName: k6-operator-controller
       terminationGracePeriodSeconds: 10
+---
+apiVersion: k6.io/v1alpha1
+kind: PrivateLoadZone
+metadata:
+  name: privateloadzone-sample
+  namespace: foo
+spec:
+  resources:
+    cpu: 200m
+    memory: 512Mi
+  token: grafana-k6-token
+---
+apiVersion: k6.io/v1alpha1
+kind: TestRun
+metadata:
+  name: k6-sample
+spec:
+  parallelism: 4
+  script:
+    configMap:
+      file: test.js
+      name: k6-test
+---
+apiVersion: k6.io/v1alpha1
+kind: TestRun
+metadata:
+  name: testrun-sample
+spec:
+  parallelism: 4
+  script:
+    configMap:
+      file: test.js
+      name: k6-test
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    containerImage: ghcr.io/grafana/k6-operator
+    repository: https://github.com/grafana/k6-operator
+    support: k6
+  name: k6-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - displayName: K6
+      kind: K6
+      name: k6s.k6.io
+      version: v1alpha1
+    - description: PrivateLoadZone is the Schema for the privateloadzones API
+      displayName: Private Load Zone
+      kind: PrivateLoadZone
+      name: privateloadzones.k6.io
+      version: v1alpha1
+    - description: TestRun is the Schema for the testruns API
+      displayName: Test Run
+      kind: TestRun
+      name: testruns.k6.io
+      version: v1alpha1
+  description: k6-operator
+  displayName: k6-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - testing
+  - performance
+  - reliability
+  - k6
+  links:
+  - name: k6 Operator
+    url: https://github.com/grafana/k6-operator
+  maintainers:
+  - email: olha@k6.io
+    name: Olha Yevtushenko
+  - email: daniel@k6.io
+    name: Daniel González Lopes
+  maturity: alpha
+  provider:
+    name: k6.io
+    url: https://k6.io/
+  version: 0.0.0
+---
+apiVersion: scorecard.operatorframework.io/v1alpha3
+kind: Configuration
+metadata:
+  name: config
+stages:
+- parallel: true
+  tests:
+  - entrypoint:
+    - scorecard-test
+    - basic-check-spec
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: basic
+      test: basic-check-spec-test
+  - entrypoint:
+    - scorecard-test
+    - olm-bundle-validation
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: olm
+      test: olm-bundle-validation-test
+  - entrypoint:
+    - scorecard-test
+    - olm-crds-have-validation
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: olm
+      test: olm-crds-have-validation-test
+  - entrypoint:
+    - scorecard-test
+    - olm-crds-have-resources
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: olm
+      test: olm-crds-have-resources-test
+  - entrypoint:
+    - scorecard-test
+    - olm-spec-descriptors
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: olm
+      test: olm-spec-descriptors-test
+  - entrypoint:
+    - scorecard-test
+    - olm-status-descriptors
+    image: quay.io/operator-framework/scorecard-test:v1.1.0
+    labels:
+      suite: olm
+      test: olm-status-descriptors-test

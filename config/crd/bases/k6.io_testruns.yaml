@@ -1079,6 +1079,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:
@@ -3097,6 +3099,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:
@@ -5138,6 +5142,8 @@ spec:
                           x-kubernetes-int-or-string: true
                         type: object
                     type: object
+                  schedulername:
+                    type: string
                   securityContext:
                     properties:
                       appArmorProfile:

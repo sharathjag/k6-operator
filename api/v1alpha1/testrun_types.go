@@ -43,6 +43,7 @@ type Pod struct {
 	Tolerations                  []corev1.Toleration               `json:"tolerations,omitempty"`
 	TopologySpreadConstraints    []corev1.TopologySpreadConstraint `json:"topologySpreadConstraints,omitempty"`
 	Resources                    corev1.ResourceRequirements       `json:"resources,omitempty"`
+	SchedulerName                string                            `json:"schedulername,omitempty"`
 	ServiceAccountName           string                            `json:"serviceAccountName,omitempty"`
 	SecurityContext              corev1.PodSecurityContext         `json:"securityContext,omitempty"`
 	ContainerSecurityContext     corev1.SecurityContext            `json:"containerSecurityContext,omitempty"`

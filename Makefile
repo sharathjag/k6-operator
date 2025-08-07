@@ -154,16 +154,33 @@ bundle-build:
 # This section is only about the HELM deployment of the operator
 # ===============================================================
 
-e2e-helm: deploy-helm
-	kubectl create configmap crocodile-stress-test --from-file e2e/test.js
-	kubectl apply -f e2e/test.yaml
+deploy-helm:
+	helm upgrade --install --wait k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml \
+		--set manager.image.registry=ghcr.io \
+		--set manager.image.repository=grafana/k6-operator \
+		--set manager.image.tag=latest
+
+e2e-helm:
+	helm upgrade --install --wait k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml \
+		--set manager.image.registry=ghcr.io \
+		--set manager.image.repository=grafana/k6-operator \
+		--set manager.image.tag=latest
+
+
+# e2e-helm: deploy-helm
+#	kubectl create configmap crocodile-stress-test --from-file e2e/test.js
+#	kubectl apply -f e2e/test.yaml
 
 # Deploy controller in the configured Kubernetes cluster in ~/.kube/config
-deploy-helm: manifests helm
-	$(HELM) upgrade --install --wait k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml --set manager.image.name=$(IMG_NAME) --set manager.image.tag=$(IMG_TAG)
+# deploy-helm: manifests helm
+#	$(HELM) upgrade --install --wait k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml --set manager.image.name=$(IMG_NAME) --set manager.image.tag=$(IMG_TAG)
 
-helm-template: manifests helm
-	$(HELM) template k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml --set manager.image.name=$(IMG_NAME) --set manager.image.tag=$(IMG_TAG)
+# helm-template: manifests helm
+#	$(HELM) template k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml --set manager.image.name=$(IMG_NAME) --set manager.image.tag=$(IMG_TAG)
+
+# make helm-template HELM_ARGS="--set manager.image.registry=ghcr.io --set manager.image.repository=grafana/k6-operator --set manager.image.tag=latest"
+helm-template:
+	helm template k6-operator ./charts/k6-operator -f ./charts/k6-operator/values.yaml $(HELM_ARGS)
 
 helm-docs:
 	go install github.com/norwoodj/helm-docs/cmd/helm-docs@v1.14.2
